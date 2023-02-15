@@ -1,0 +1,19 @@
+#!/usr/bin/env ruby
+puts 'Ruby ping'
+#require './whatever_shell.rb'
+require '~/studio/whatever-shell/lib/whatever/shell.rb'
+
+fn('114') do |n, m|
+  system 'ping -c5 114.114.114.114'
+end
+
+fn('8') do
+  system 'ping -c5 8.8.8.8'
+end
+
+sfn '4', 'ping -c5 8.8.4.4'
+
+sfn 'lzm', 'ping -c3 lzm'
+# postgres 'ps aux | grep postgresql'
+
+run

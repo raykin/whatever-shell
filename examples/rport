@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+#require './whatever_shell.rb'
+require '~/studio/whatever-shell/lib/whatever/shell.rb'
+
+fn('listen') do |p|
+  system "lsof -i -nP | grep #{p} | grep LISTEN"
+end
+
+run
