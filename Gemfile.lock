@@ -1,0 +1,21 @@
+PATH
+  remote: .
+  specs:
+    whatever-shell (0.1.0)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    minitest (5.17.0)
+    rake (13.0.6)
+
+PLATFORMS
+  x86_64-darwin-22
+
+DEPENDENCIES
+  minitest (~> 5.0)
+  rake (~> 13.0)
+  whatever-shell!
+
+BUNDLED WITH
+   2.4.6
