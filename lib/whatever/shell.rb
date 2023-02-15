@@ -8,6 +8,8 @@ module Whatever
 
     module TopMainExt
       def fn(i, &block)
+        puts block.class.inspect
+        puts block.parameters.inspect
         self.define_singleton_method "shell_#{i}" do
           block.call
         end
@@ -20,13 +22,7 @@ module Whatever
       end
 
       def run
-        ARGV.each do |item|
-          if item.to_i.to_s == item
-            send("shell_#{item}")
-          else
-            send("shell_#{item}")
-          end
-        end
+        send("shell_#{ARGV[0]}", ARGV[1])
       end
 
       # Try support following syntax by method_missing but cause more troubles
