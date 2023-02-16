@@ -8,15 +8,11 @@ module Whatever
 
     module TopMainExt
       def fn(i, &block)
-        puts block.class.inspect
-        puts block.parameters.inspect
-        self.define_singleton_method "shell_#{i}" do
-          block.call
-        end
+        self.define_singleton_method "shell_#{i}".to_sym, block
       end
 
-      def sfn(i, str)
-        self.define_singleton_method "shell_#{i}" do
+      def as(i, str)
+        self.define_singleton_method("shell_#{i}") do |arg|
           system str
         end
       end
