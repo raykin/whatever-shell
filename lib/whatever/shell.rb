@@ -12,13 +12,13 @@ module Whatever
       end
 
       def as(i, str)
-        self.define_singleton_method("shell_#{i}") do |arg|
+        self.define_singleton_method("shell_#{i}") do
           system str
         end
       end
 
       def run
-        send("shell_#{ARGV[0]}", ARGV[1])
+        send("shell_#{ARGV[0]}", *ARGV[1..])
       end
 
       # Try support following syntax by method_missing but cause more troubles
