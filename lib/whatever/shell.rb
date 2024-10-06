@@ -7,18 +7,26 @@ module Whatever
     class Error < StandardError; end
 
     module TopMainExt
+      attr_accessor :available_fns
+
       def fn(i, &block)
         self.define_singleton_method "shell_#{i}".to_sym, block
+        available_fns << i
       end
 
       def as(i, str)
         self.define_singleton_method("shell_#{i}") do
           system str
         end
+        available_fns << i
       end
 
       def run
-        send("shell_#{ARGV[0]}", *ARGV[1..])
+        if available_fns.include? ARGV[0]
+          send("shell_#{ARGV[0]}", *ARGV[1..])
+        else
+          raise Error, "#{ARGV[0]} is not available in command list #{available_fns.to_s}"
+        end
       end
 
       # Try support following syntax by method_missing but cause more troubles
@@ -43,3 +51,4 @@ module Whatever
 end
 
 self.class.include Whatever::Shell::TopMainExt
+self.available_fns = []
