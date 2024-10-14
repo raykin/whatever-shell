@@ -22,7 +22,7 @@ module Whatever
       end
 
       def run
-        if available_fns.include? ARGV[0]
+        if available_fns.include?(ARGV[0] || '')
           send("shell_#{ARGV[0]}", *ARGV[1..])
         else
           raise Error, "#{ARGV[0]} is not available in command list #{available_fns.to_s}"
